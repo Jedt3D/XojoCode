@@ -2,7 +2,7 @@
   "name": "xojo-syntax",
   "displayName": "Xojo Syntax Highlighting",
   "description": "Syntax highlighting for the Xojo programming language in Visual Studio Code.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "worajedt",
   "repository": {
     "type": "git",

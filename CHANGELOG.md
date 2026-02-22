@@ -2,6 +2,10 @@
 
 All notable changes to the "xojo-syntax" extension will be documented in this file.
 
+## [0.1.1]
+- Formatter is now scoped to specific Xojo file extensions only: `.xojo_code`, `.xojo_window`, `.xojo_toolbar`, `.xojo_project`, `.xojo_menu`, `.xojo_database_connection`.
+- Added `.xojo_database_connection` as a recognized Xojo language file extension for both syntax highlighting and formatting.
+
 ## [0.1.0]
 - Added **Format Document** support (`⇧⌥F`) for Xojo files.
 - Formatter applies consistent indentation inside `#tag`, `Begin...End`, `If...End If`, `For...Next`, `Try...Catch`, and other block structures.

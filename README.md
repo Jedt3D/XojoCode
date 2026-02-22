@@ -6,9 +6,10 @@ This extension provides syntax highlighting for the [Xojo](https://www.xojo.com/
 
 - **Syntax Highlighting**: Comprehensive coloring for Xojo keywords, data types, built-in functions, and classes.
 - **Desktop API v2 Support**: Native highlighting for `DesktopWindow`, `DesktopButton`, `DesktopLabel`, and other modern desktop controls.
-- **Project File Support**: Recognizes and correctly highlights Xojo text format files including `.xojo_code`, `.xojo_window`, `.xojo_menu`, `.xojo_toolbar`, and more.
+- **Project File Support**: Recognizes and correctly highlights Xojo text format files: `.xojo_code`, `.xojo_window`, `.xojo_menu`, `.xojo_toolbar`, `.xojo_project`, `.xojo_database_connection`, and more.
 - **Tag Block Recognition**: Special highlighting for Xojo's `#tag` block structures used in text project formats.
-- **Smart Formatting**: Basic language configuration for commenting (both `//` and `'`) and bracket/indentation matching.
+- **Smart Formatting**: Language configuration for commenting (both `//` and `'`) and bracket/indentation matching.
+- **Format Document**: Press `⇧⌥F` to auto-format any Xojo file — normalizes indentation, keyword casing, `Key = Value` spacing, and blank lines between method blocks. Scoped to `.xojo_code`, `.xojo_window`, `.xojo_toolbar`, `.xojo_project`, `.xojo_menu`, and `.xojo_database_connection`.
 
 ## Usage
 
@@ -23,6 +24,10 @@ Simply open any Xojo text format file (like `.xojo_code` or `.xojo_window`) in V
 - This is an initial release focusing primarily on syntax highlighting. Snippets and code completion are not yet fully implemented.
 
 ## Release Notes
+
+### 0.1.1
+- Formatter is now scoped to specific Xojo file extensions only: `.xojo_code`, `.xojo_window`, `.xojo_toolbar`, `.xojo_project`, `.xojo_menu`, `.xojo_database_connection`.
+- Added `.xojo_database_connection` as a recognized Xojo language file extension for both syntax highlighting and formatting.
 
 ### 0.1.0
 - Added **Format Document** support (`⇧⌥F`) for Xojo files.
