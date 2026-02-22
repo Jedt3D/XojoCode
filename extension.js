@@ -3,8 +3,17 @@
 const vscode = require('vscode');
 const { formatXojo } = require('./formatter');
 
+const XOJO_EXTENSIONS = [
+    { pattern: '**/*.xojo_code' },
+    { pattern: '**/*.xojo_window' },
+    { pattern: '**/*.xojo_toolbar' },
+    { pattern: '**/*.xojo_project' },
+    { pattern: '**/*.xojo_menu' },
+    { pattern: '**/*.xojo_database_connection' },
+];
+
 function activate(context) {
-    const provider = vscode.languages.registerDocumentFormattingEditProvider('xojo', {
+    const formatterImpl = {
         provideDocumentFormattingEdits(document) {
             const text = document.getText();
             const formatted = formatXojo(text);
@@ -15,8 +24,15 @@ function activate(context) {
             );
             return [vscode.TextEdit.replace(fullRange, formatted)];
         }
-    });
-    context.subscriptions.push(provider);
+    };
+
+    for (const selector of XOJO_EXTENSIONS) {
+        const provider = vscode.languages.registerDocumentFormattingEditProvider(
+            { language: 'xojo', pattern: selector.pattern },
+            formatterImpl
+        );
+        context.subscriptions.push(provider);
+    }
 }
 
 function deactivate() {}

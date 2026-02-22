@@ -34,7 +34,8 @@
           ".xojo_project",
           ".xojo_xml_project",
           ".xojo_binary_project",
-          ".xojo_script"
+          ".xojo_script",
+          ".xojo_database_connection"
         ],
         "configuration": "./language-configuration.json"
       }
