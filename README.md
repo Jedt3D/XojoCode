@@ -24,5 +24,12 @@ Simply open any Xojo text format file (like `.xojo_code` or `.xojo_window`) in V
 
 ## Release Notes
 
+### 0.0.2
+- `#tag` keyword now renders with its own distinct color, separate from the tag type that follows it.
+- `Key = Value` pairs inside `#tag` lines now color values by type: strings, booleans, numbers, and identifiers each get a different color.
+- `Begin ClassName InstanceName` — the class name (e.g. `DesktopButton`) is now rendered in bold.
+- Boolean values (`True`/`False`) in property assignment blocks are now bold.
+- Numeric values in property assignment blocks now have a distinct color, separate from strings.
+
 ### 0.0.1
 - Initial release with comprehensive Xojo syntax highlighting and Desktop API v2 support.
