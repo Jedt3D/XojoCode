@@ -6,7 +6,13 @@
             "include": "#comments"
         },
         {
-            "include": "#tags"
+            "include": "#tag-lines"
+        },
+        {
+            "include": "#begin-block"
+        },
+        {
+            "include": "#property-assignment"
         },
         {
             "include": "#strings"
@@ -37,11 +43,121 @@
                 }
             ]
         },
-        "tags": {
+        "tag-lines": {
+            "comment": "#tag Keyword, Key = Value, Key = Value — #tag gets its own color, keys are attributes, values are colored",
             "patterns": [
                 {
-                    "name": "keyword.control.directive.xojo",
-                    "match": "^\\s*#(tag|pragma|if|else|elseif|endif)\\b.*$"
+                    "comment": "#tag EndXxx lines",
+                    "match": "^\\s*(#tag)\\s+(End\\w*)(.*)?$",
+                    "captures": {
+                        "1": { "name": "keyword.other.tag.xojo" },
+                        "2": { "name": "keyword.control.directive.xojo" },
+                        "3": { "name": "comment.line.xojo" }
+                    }
+                },
+                {
+                    "comment": "#tag Type, Key = Value pairs",
+                    "begin": "^\\s*(#tag)\\s+([A-Za-z_]\\w*)",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.other.tag.xojo" },
+                        "2": { "name": "keyword.control.directive.xojo" }
+                    },
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "include": "#tag-key-value"
+                        }
+                    ]
+                },
+                {
+                    "comment": "#pragma / #if / #else / #endif",
+                    "match": "^\\s*(#(?:pragma|if|else|elseif|endif))\\b(.*)$",
+                    "captures": {
+                        "1": { "name": "keyword.other.tag.xojo" },
+                        "2": { "name": "meta.preprocessor.xojo" }
+                    }
+                }
+            ]
+        },
+        "tag-key-value": {
+            "comment": "Matches Key = Value pairs inside #tag lines",
+            "patterns": [
+                {
+                    "comment": "Key = \"string value\"",
+                    "match": "([A-Za-z_]\\w*)\\s*(=)\\s*(\"[^\"]*\")",
+                    "captures": {
+                        "1": { "name": "variable.other.property.xojo" },
+                        "2": { "name": "keyword.operator.xojo" },
+                        "3": { "name": "string.quoted.double.xojo" }
+                    }
+                },
+                {
+                    "comment": "Key = True|False",
+                    "match": "(?i)([A-Za-z_]\\w*)\\s*(=)\\s*(True|False)",
+                    "captures": {
+                        "1": { "name": "variable.other.property.xojo" },
+                        "2": { "name": "keyword.operator.xojo" },
+                        "3": { "name": "constant.language.boolean.xojo" }
+                    }
+                },
+                {
+                    "comment": "Key = numeric value",
+                    "match": "([A-Za-z_]\\w*)\\s*(=)\\s*([0-9]+(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)",
+                    "captures": {
+                        "1": { "name": "variable.other.property.xojo" },
+                        "2": { "name": "keyword.operator.xojo" },
+                        "3": { "name": "constant.numeric.xojo" }
+                    }
+                },
+                {
+                    "comment": "Key = identifier value (e.g. Scope = Public)",
+                    "match": "([A-Za-z_]\\w*)\\s*(=)\\s*([A-Za-z_]\\w*)",
+                    "captures": {
+                        "1": { "name": "variable.other.property.xojo" },
+                        "2": { "name": "keyword.operator.xojo" },
+                        "3": { "name": "support.constant.xojo" }
+                    }
+                }
+            ]
+        },
+        "begin-block": {
+            "comment": "Begin ClassName InstanceName — class name is bold (entity.name.class)",
+            "match": "^\\s*(Begin)\\s+([A-Za-z_]\\w*)(?:\\s+([A-Za-z_]\\w*))?",
+            "captures": {
+                "1": { "name": "keyword.control.begin.xojo" },
+                "2": { "name": "entity.name.class.xojo" },
+                "3": { "name": "variable.other.instance.xojo" }
+            }
+        },
+        "property-assignment": {
+            "comment": "Key = Value lines inside Begin...End blocks",
+            "patterns": [
+                {
+                    "comment": "Key = \"string\"",
+                    "match": "^\\s*([A-Za-z_]\\w*)\\s*(=)\\s*(\"[^\"]*\")",
+                    "captures": {
+                        "1": { "name": "variable.other.property.xojo" },
+                        "2": { "name": "keyword.operator.xojo" },
+                        "3": { "name": "string.quoted.double.xojo" }
+                    }
+                },
+                {
+                    "comment": "Key = True|False (bold via constant.language.boolean)",
+                    "match": "(?i)^\\s*([A-Za-z_]\\w*)\\s*(=)\\s*(True|False)",
+                    "captures": {
+                        "1": { "name": "variable.other.property.xojo" },
+                        "2": { "name": "keyword.operator.xojo" },
+                        "3": { "name": "constant.language.boolean.xojo" }
+                    }
+                },
+                {
+                    "comment": "Key = numeric (distinct color via constant.numeric)",
+                    "match": "^\\s*([A-Za-z_]\\w*)\\s*(=)\\s*(-?[0-9]+(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)",
+                    "captures": {
+                        "1": { "name": "variable.other.property.xojo" },
+                        "2": { "name": "keyword.operator.xojo" },
+                        "3": { "name": "constant.numeric.xojo" }
+                    }
                 }
             ]
         },
@@ -91,7 +207,7 @@
                     "match": "(?i)\\b(Integer|Int8|Int16|Int32|Int64|UInt8|UInt16|UInt32|UInt64|Double|Single|Currency|String|Boolean|Color|Date|DateTime|FolderItem|Variant|Auto|MemoryBlock|Dictionary|Array|Exception|RuntimeException)\\b"
                 },
                 {
-                    "name": "support.class.desktop.xojo",
+                    "name": "entity.name.class.xojo",
                     "match": "(?i)\\b(DesktopWindow|DesktopButton|DesktopLabel|DesktopTextField|DesktopTextArea|DesktopListBox|DesktopPopupMenu|DesktopCheckBox|DesktopApplication|DesktopCanvas|DesktopContainer|DesktopControl|DesktopDatePicker|DesktopGroupBox|DesktopHTMLViewer|DesktopImageViewer|DesktopLinearProgressIndicator|DesktopOval|DesktopProgressBar|DesktopProgressWheel|DesktopRadioGroup|DesktopRectangle|DesktopScrollBar|DesktopSearchField|DesktopSegmentedButton|DesktopSeparator|DesktopSlider|DesktopTabPanel|DesktopToolbar)\\b"
                 }
             ]
