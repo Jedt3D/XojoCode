@@ -1,0 +1,144 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Xojo",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#tags"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#functions"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.xojo",
+                    "match": "//.*$"
+                },
+                {
+                    "name": "comment.line.apostrophe.xojo",
+                    "match": "'.*$"
+                }
+            ]
+        },
+        "tags": {
+            "patterns": [
+                {
+                    "name": "keyword.control.directive.xojo",
+                    "match": "^\\s*#(tag|pragma|if|else|elseif|endif)\\b.*$"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.xojo",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.xojo",
+                    "match": "\"\""
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.xojo",
+                    "match": "(?i)\\b(If|Then|Else|ElseIf|For|Each|In|To|DownTo|Step|Next|While|Wend|Do|Loop|Until|Select|Case|Try|Catch|Finally|Return|Exit|Continue|Raise|GoTo|With)\\b"
+                },
+                {
+                    "name": "keyword.declaration.xojo",
+                    "match": "(?i)\\b(Class|Interface|Module|End|Sub|Function|Property|Event|Enum|Structure|Const|Var|Dim|Static|Delegate|Exception)\\b"
+                },
+                {
+                    "name": "storage.modifier.xojo",
+                    "match": "(?i)\\b(Public|Protected|Private|Global|Shared|ByRef|ByVal|Optional|ParamArray|Assigns|Extends|WeakAddressOf|AddressOf|Implements|Inherits)\\b"
+                },
+                {
+                    "name": "keyword.operator.logical.xojo",
+                    "match": "(?i)\\b(And|Or|Not|Xor|Is|IsA)\\b"
+                },
+                {
+                    "name": "keyword.operator.xojo",
+                    "match": "(=|<>|<|>|<=|>=|\\+|-|\\*|/|\\\\|\\^|Mod)"
+                },
+                {
+                    "name": "constant.language.xojo",
+                    "match": "(?i)\\b(True|False|Nil|Me|Self|Super)\\b"
+                }
+            ]
+        },
+        "types": {
+            "patterns": [
+                {
+                    "name": "support.type.xojo",
+                    "match": "(?i)\\b(Integer|Int8|Int16|Int32|Int64|UInt8|UInt16|UInt32|UInt64|Double|Single|Currency|String|Boolean|Color|Date|DateTime|FolderItem|Variant|Auto|MemoryBlock|Dictionary|Array|Exception|RuntimeException)\\b"
+                },
+                {
+                    "name": "support.class.desktop.xojo",
+                    "match": "(?i)\\b(DesktopWindow|DesktopButton|DesktopLabel|DesktopTextField|DesktopTextArea|DesktopListBox|DesktopPopupMenu|DesktopCheckBox|DesktopApplication|DesktopCanvas|DesktopContainer|DesktopControl|DesktopDatePicker|DesktopGroupBox|DesktopHTMLViewer|DesktopImageViewer|DesktopLinearProgressIndicator|DesktopOval|DesktopProgressBar|DesktopProgressWheel|DesktopRadioGroup|DesktopRectangle|DesktopScrollBar|DesktopSearchField|DesktopSegmentedButton|DesktopSeparator|DesktopSlider|DesktopTabPanel|DesktopToolbar)\\b"
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.hex.xojo",
+                    "match": "&[hH][0-9a-fA-F]+"
+                },
+                {
+                    "name": "constant.numeric.binary.xojo",
+                    "match": "&[bB][01]+"
+                },
+                {
+                    "name": "constant.numeric.octal.xojo",
+                    "match": "&[oO][0-7]+"
+                },
+                {
+                    "name": "constant.numeric.color.xojo",
+                    "match": "&[cC][0-9a-fA-F]{6,8}"
+                },
+                {
+                    "name": "constant.numeric.decimal.xojo",
+                    "match": "\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b"
+                }
+            ]
+        },
+        "functions": {
+            "patterns": [
+                {
+                    "match": "(?i)\\b(Sub|Function)\\s+([a-zA-Z_]\\w*)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.declaration.xojo"
+                        },
+                        "2": {
+                            "name": "entity.name.function.xojo"
+                        }
+                    }
+                },
+                {
+                    "match": "(?i)\\b([a-zA-Z_]\\w*)\\s*(?=\\()",
+                    "name": "support.function.xojo"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.xojo"
+}

@@ -1,0 +1,42 @@
+{
+  "name": "xojo-syntax",
+  "displayName": "Xojo Syntax Highlighting",
+  "description": "Syntax highlighting for the Xojo programming language in Visual Studio Code.",
+  "version": "0.0.1",
+  "publisher": "worajedt",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "xojo",
+        "aliases": [
+          "Xojo",
+          "xojo"
+        ],
+        "extensions": [
+          ".xojo_code",
+          ".xojo_window",
+          ".xojo_menu",
+          ".xojo_toolbar",
+          ".xojo_project",
+          ".xojo_xml_project",
+          ".xojo_binary_project",
+          ".xojo_script"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "xojo",
+        "scopeName": "source.xojo",
+        "path": "./syntaxes/xojo.tmLanguage.json"
+      }
+    ]
+  }
+}
