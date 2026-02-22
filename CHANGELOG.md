@@ -2,6 +2,14 @@
 
 All notable changes to the "xojo-syntax" extension will be documented in this file.
 
+## [0.1.0]
+- Added **Format Document** support (`⇧⌥F`) for Xojo files.
+- Formatter applies consistent indentation inside `#tag`, `Begin...End`, `If...End If`, `For...Next`, `Try...Catch`, and other block structures.
+- Normalizes keyword casing to Title Case (`If`, `Then`, `Var`, `Sub`, `Function`, etc.).
+- Normalizes `Key=Value` spacing to `Key = Value` in property and tag lines.
+- Trims trailing whitespace on all lines.
+- Inserts blank lines between `#tag Method` / `#tag EndMethod` blocks.
+
 ## [0.0.2]
 - Improved `#tag` line highlighting: `#tag` keyword now has its own distinct color
 - `Key = Value` pairs in `#tag` lines now color values by type (string, boolean, numeric, identifier)

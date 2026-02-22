@@ -24,6 +24,10 @@ Simply open any Xojo text format file (like `.xojo_code` or `.xojo_window`) in V
 
 ## Release Notes
 
+### 0.1.0
+- Added **Format Document** support (`⇧⌥F`) for Xojo files.
+- Formatter applies consistent indentation, normalizes keyword casing, spacing around `=`, and blank lines between method blocks.
+
 ### 0.0.2
 - `#tag` keyword now renders with its own distinct color, separate from the tag type that follows it.
 - `Key = Value` pairs inside `#tag` lines now color values by type: strings, booleans, numbers, and identifiers each get a different color.
